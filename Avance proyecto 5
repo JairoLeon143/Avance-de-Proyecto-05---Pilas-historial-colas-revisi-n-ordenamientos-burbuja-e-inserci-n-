@@ -1,0 +1,86 @@
+# 8. Ordenar cursos por nota (burbuja)
+# Ordena los cursos en orden descendente según las notas.
+# Usa el método de ordenamiento burbuja.
+def ordenar_por_nota():
+    n = len(notas)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if notas[j] < notas[j + 1]:  # mayor a menor
+                notas[j], notas[j + 1] = notas[j + 1], notas[j]
+                nombres[j], nombres[j + 1] = nombres[j + 1], nombres[j]
+    print("\nCursos ordenados por nota:")
+    mostrar_cursos()
+
+
+# 9. Ordenar cursos por nombre (inserción)
+# Ordena los cursos alfabéticamente aplicando el método de inserción.
+def ordenar_por_nombre():
+    for i in range(1, len(nombres)):
+        key_nombre = nombres[i]
+        key_nota = notas[i]
+        j = i - 1
+        while j >= 0 and nombres[j].lower() > key_nombre.lower():
+            nombres[j + 1] = nombres[j]
+            notas[j + 1] = notas[j]
+            j -= 1
+        nombres[j + 1] = key_nombre
+        notas[j + 1] = key_nota
+    print("\nCursos ordenados por nombre:")
+    mostrar_cursos()
+
+
+# 10. Búsqueda binaria por nombre
+# Solo se puede usar si los cursos están ordenados por nombre.
+# Busca el curso más rápido dividiendo la lista a la mitad cada vez.
+def buscar_curso_binario():
+    if not nombres:
+        print("No hay cursos registrados.")
+        return
+
+    # Verifica si la lista está ordenada
+    if nombres != sorted(nombres, key=lambda x: x.lower()):
+        print("Primero debe ordenar los cursos por nombre antes de usar la búsqueda binaria.")
+        return
+
+    nombre_buscar = input("Ingrese el nombre del curso a buscar: ").strip().lower()
+    inicio, fin = 0, len(nombres) - 1
+
+    while inicio <= fin:
+        medio = (inicio + fin) // 2
+        if nombres[medio].lower() == nombre_buscar:
+            print(f"Curso encontrado: {nombres[medio]} - Nota: {notas[medio]}")
+            return
+        elif nombres[medio].lower() < nombre_buscar:
+            inicio = medio + 1
+        else:
+            fin = medio - 1
+    print("Curso no encontrado.")
+
+
+# 11. Simular cola de revisión
+# Aquí se simula una cola de cursos que van a revisión.
+# El usuario ingresa varios cursos y al final se muestran en el mismo orden.
+def simular_cola_revision():
+    cola = []
+    print("Ingrese curso para revisión (escriba 'fin' para terminar):")
+    while True:
+        curso = input("> ")
+        if curso.lower() == "fin":
+            break
+        cola.append(curso)
+
+    print("\nProcesando solicitudes:")
+    for curso in cola:
+        print(f"Revisando: {curso}")
+
+
+# 12. Mostrar historial de cambios (pila)
+# Muestra los últimos cambios realizados (actualizaciones o eliminaciones)
+# en orden inverso, como una pila.
+def mostrar_historial():
+    if not historial_cambios:
+        print("No hay cambios registrados aún.")
+    else:
+        print("\nHistorial de cambios recientes:")
+        for i, cambio in enumerate(reversed(historial_cambios), 1):
+            print(f"{i}. {cambio}")
