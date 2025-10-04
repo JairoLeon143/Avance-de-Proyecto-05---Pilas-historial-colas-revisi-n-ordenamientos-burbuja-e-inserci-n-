@@ -26,11 +26,3 @@ El usuario escribe los nombres de los cursos que quiere enviar a revisión y, cu
 Cada vez que cambias o eliminas una nota, el programa guarda ese cambio en una pila (estructura LIFO: el último en entrar es el primero en salir).
 Luego, esta opción muestra el historial de modificaciones en orden inverso, desde la más reciente hasta la más antigua.
 
-
-
-```
-
----
-
-¿Quieres que te haga una versión corta tipo **resumen para copiar en cuaderno** (en 2 o 3 líneas por punto)?
-
